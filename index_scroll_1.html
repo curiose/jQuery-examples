@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Scroll</title>
+   <style>
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      .main {
+          min-height: 5000px;
+         background-color: black;
+      }
+
+      .header {
+         background-color: #fff;
+         width: 100%;
+         /* height: 100px; */
+      }
+
+      .header__top {
+         background-color: yellow;
+         height: 50px;
+         width: 100%;
+      }
+
+      .header__bottom {
+         background-color: blue;
+         height: 50px;
+         width: 100%;
+      }
+
+      .fixed {
+         position: fixed;
+         top: 0;
+         left: 0;
+      }
+
+      .first {
+         height: 500px;
+         width: 100%;
+         background-color: grey;
+      }
+
+   </style>
+</head>
+<body>
+   <main class="main">
+      <div class="header">
+         <div class="header__top">
+         </div>
+         <div class="header__bottom"></div>
+      </div>
+      <div class="first"></div>
+   </main>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script>
+
+      $(document).ready(function(){
+
+         let $bottom = $('.header__bottom');
+         let $first =$('.first');
+         let offset = $bottom.offset().top; //определяем отступ header__bottom от начала сайта
+         let bottomHeight = $bottom.outerHeight(); // определяем высоту header__bottom.
+                                                   // outerHeight видит так же и padding
+
+         $(window).on('scroll', function(){
+         
+            if ($(this).scrollTop() >= offset) {  //scrollTop - считает сколько от верха сайта 
+               $bottom.addClass('fixed');
+               $first.css('margin-top', bottomHeight); //чтобы блок не подпрыгивал при скролле и фиксирвоании header__bottom
+            } else {
+               $bottom.removeClass('fixed');
+               $first.css('margin-top', 0);
+            }
+         });  
+      })
+   </script>
+</body>
+</html>

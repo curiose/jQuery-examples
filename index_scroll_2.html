@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Scroll</title>
+   <style>
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         padding-top: 100px;
+      }
+
+      .item {
+         width: 500px;
+         height: 500px;
+         border: 1px solid #000;
+         border-radius: 4px;
+         margin-bottom: 100px;
+         transition:all 0.3s ease-in-out;
+      }
+
+   </style>
+</head>
+<body>
+   
+   <div class="item" data-color="#CD5C5C"></div>
+   <div class="item" data-color="#98FB98"></div>
+   <div class="item" data-color="#FF1493"></div>
+   <div class="item" data-color="#FFFF00"></div>
+   <div class="item" data-color="#00CED1"></div>
+   <div class="item" data-color="#8A2BE2"></div>
+   <div class="item" data-color="#191970"></div>
+   <div class="item" data-color="#778899"></div>
+   <div class="item" data-color="#FFD700"></div>
+   <div class="item" data-color="#000000"></div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script>
+
+      let $item = $('.item'); //заносим в переменную элемент item
+
+      let $window = $(window); // window тоже в переменную, чтобы не обращаться каждый раз к объекту
+
+      function viewedItem(item) {
+         let scrollTop = $window.scrollTop(); // определяем в переменную высоту от верха
+         let scrollBottom = scrollTop + $window.height(); //сколько просроклили + высота окна
+
+         $item.each((index, item) => { //проходимся по всем элементам
+            let $currentItem = $(item); //определяем текущий элемент
+
+            let itemOffsetTop = $currentItem.offset().top; //определяем отступ от верха (offset.top) у конкретного item
+
+            let itemOffsetBottom = itemOffsetTop + $currentItem.height(); //определяем отступ снизу у этого же элемента
+
+            if (scrollTop < itemOffsetBottom && scrollBottom > itemOffsetTop && !$currentItem.attr('dataviewed')) {
+               let color = $currentItem.attr('data-color'); // определяем в переменную цвет из data-color
+               $currentItem.css('background-color', color); // назначаем этот цвет через css 
+               $currentItem.attr('data-viewed', 'true'); // вфеф-мшуцув помечает item и к нему не нужно применять функцию повторно
+            }
+
+         });
+      }
+
+      viewedItem();
+
+      $window.scroll(() => {
+         viewedItem();
+      });
+      
+   </script>
+</body>
+</html>

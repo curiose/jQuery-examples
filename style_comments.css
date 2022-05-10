@@ -1,0 +1,110 @@
+
+      * {
+         margin: 0 auto;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: sans-serif;
+      }
+
+      .comments__content, .comments__form {
+         padding-top: 20px;
+         display: flex;
+         flex-direction: column;
+      }
+      
+      .comments__title {
+         text-transform: uppercase;
+         margin-bottom: 15px;
+         text-align: center;
+      }
+
+      .comments__none {
+         text-align: center;
+         color: grey;
+         margin-bottom: 15px;
+      }
+
+      .comments__item {
+         width: 600px;
+         height: 150px;
+         background-color: grey;
+         position: relative;
+         padding: 30px;
+         margin-bottom: 50px;
+      }
+
+      .comments__delete {
+         background-color: transparent;
+         border: none;
+         position: absolute;
+         top: 15px;
+         right: 30px;
+      }
+
+      .comments__delete::before {
+         position: absolute;  
+         content: '';
+         width: 20px;
+         height: 3px;
+         background-color: red;
+         transform: rotate(45deg);
+      }
+
+      .comments__delete::after {
+         position: absolute;  
+         content: '';
+         width: 20px;
+         height: 3px;
+         background-color: red;
+         transform: rotate(-45deg);
+      }
+
+      .comments__text {
+         margin-bottom: 20px;
+      }
+
+      .comments__date {
+         text-align: right;
+      }
+
+      .comments__author {
+         text-transform: uppercase;
+         font-weight: 700;
+         margin-bottom: 15px;
+      }
+
+      .comments__form {
+         display: flex;
+         flex-direction: column;
+         
+      }
+
+      .comments__form__title {
+         text-align: center;
+         text-transform: uppercase;
+         margin-bottom: 50px;
+      }
+
+      .commants__label {
+         text-align: left;
+      }
+      .error {
+         border: 1px solid red !important;
+      }
+
+      .comments__label {
+        margin-bottom: 15px;
+      }
+ 
+      span {
+         font-weight: 700;
+         margin-right: 15px;
+      }
+
+      input {
+         padding: 10px 20px;
+      }
+
+      textarea {
+         padding: 10px 100px 100px 20px;
+      }
